@@ -1,0 +1,90 @@
+from sage.all import false
+from matplotlib.style import context
+import json
+from pwn import *
+
+host = "socket.cryptohack.org"
+# host = "127.0.0.1"
+port = 13423
+
+conn = remote(host, port)
+context.log_level = 'debug'
+
+def send(obj):
+    obj = json.dumps(obj).encode()
+    conn.sendline(obj)
+
+def recv():
+    line = conn.recvline()
+    line = json.loads(line.decode())
+    return line
+
+conn.recvline()
+
+import time
+start_time = time.perf_counter()
+
+send({'option': 'encrypt'})
+ct = recv()['ct']
+ct = bytes.fromhex(ct)
+# print(ct)
+
+from tqdm import tqdm
+
+def decrypt_block(block, prev_block, possible_char=b'0123456789abcdef'):
+    pt = [0] * 16
+    iv = [0] * 16
+
+    for i in range(16):
+        expected_padding = i + 1
+        
+        # Siapkan byte padding sebelumnya
+        for v in range(15 - i + 1, 16):
+            iv[v] = pt[v] ^ prev_block[v] ^ expected_padding
+
+        # Inisialisasi bobot seragam (prior)
+        weights = {char: 1.0 for char in possible_char}
+
+        while True:
+            # Pilih kandidat dengan bobot tertinggi saat ini
+            char = max(weights, key=weights.get)
+
+            iv[15 - i] = char ^ prev_block[15 - i] ^ expected_padding
+            payload = bytes(iv) + block
+
+            send({'option': 'unpad', 'ct': payload.hex()})
+            res = recv()['result']
+
+            # Update bobot berdasarkan likelihood ratio
+            if not res:  # False -> sinyal positif (probabilitas benar 60%)
+                weights[char] *= 1.5
+            else:        # True  -> sinyal negatif (probabilitas salah 60%)
+                weights[char] *= (2.0 / 3.0)
+
+            # Hitung posterior probability
+            total_weight = sum(weights.values())
+            posterior = weights[char] / total_weight
+
+            # Ambang batas keyakinan 99.9%
+            if posterior > 0.999:
+                pt[15 - i] = char
+                print(f"[+] Byte {15 - i} ditemukan: {chr(char)} (p={posterior:.4f})")
+                break
+
+    return bytes(pt)
+
+iv = ct[:16]
+first = ct[16:32]
+second = ct[32:]
+
+pt1 = decrypt_block(first, iv)
+pt2 = decrypt_block(second, first)
+
+send({'option': 'check', 'message': (pt1+pt2).decode()})
+print(recv())
+
+end_time = time.perf_counter()
+execution_time = end_time - start_time
+print(f"Took {execution_time:.2f} seconds")
+
+conn.close()
