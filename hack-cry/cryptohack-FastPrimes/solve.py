@@ -16,51 +16,6 @@ print(f"N : {N}")
 print(f"e : {e}")
 print(f"ct: {ct}")
 
-primes = []
-
-
-def sieve(maximum=10000):
-    # In general Sieve of Sundaram, produces primes smaller
-    # than (2*x + 2) for a number given number x. Since
-    # we want primes smaller than maximum, we reduce maximum to half
-    # This array is used to separate numbers of the form
-    # i+j+2ij from others where 1 <= i <= j
-    marked = [False]*(int(maximum/2)+1)
-
-    # Main logic of Sundaram. Mark all numbers which
-    # do not generate prime number by doing 2*i+1
-    for i in range(1, int((math.sqrt(maximum)-1)/2)+1):
-        for j in range(((i*(i+1)) << 1), (int(maximum/2)+1), (2*i+1)):
-            marked[j] = True
-
-    # Since 2 is a prime number
-    primes.append(2)
-
-    # Print other primes. Remaining primes are of the
-    # form 2*i + 1 such that marked[i] is false.
-    for i in range(1, int(maximum/2)):
-        if (marked[i] == False):
-            primes.append(2*i + 1)
-
-sieve()
-
-print(f"Primes-size: {len(primes)}")
-
-def get_primorial(n):
-    result = 1
-    for i in range(n):
-        result = result * primes[i]
-    return result
-
-M = get_primorial(40)
-print(f"M: {M}")
-
-# n = p * q
-# n = (k1 * M + pow(e, a1, M)) * (k2 * M + pow(e, a2, M))
-# k1 * M = x V k2 * M = y
-# n = (x + pow(e, a1, M)) * (y + pow(e, a2, M))
-# n = x.y + x.pow(e, a2, M) + y.pow(e, a1, M) + pow(e, a1, M).pow(e, a2, M)
-
 # https://github.com/mimoo/RSA-and-LLL-attacks/blob/master/coppersmith.sage
 param = \
 {
@@ -165,6 +120,7 @@ class Worker(multiprocessing.Process):
         try:
             # Fetch parameters according to key size
             N, keylength, start, stop, factors_queue, manager,algo = self._args
+            print(keylength)
             M_prime = param[keylength]['M_prime']
             beta = 0.5 
             mm = param[keylength]['m']
