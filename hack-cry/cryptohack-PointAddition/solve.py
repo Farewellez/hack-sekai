@@ -32,5 +32,5 @@ Sy = (s*(P_P[0] - Sx) - P_P[1]) % p
 S = (Sx, Sy)
 
 assert pow(Sy,2,p) == (Sx**3 + a*Sx + b) % p, "somethings wrong..."
-flag = f"crypto{{{S}}}"
+flag = f"crypto{{{S[0]},{S[1]}}}"
 print(flag)
