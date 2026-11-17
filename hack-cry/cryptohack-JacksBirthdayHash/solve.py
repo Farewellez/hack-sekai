@@ -23,6 +23,8 @@ print(f"2^n = {all_possibility}") # 2048
 # -(2047/2048)^n > -0.5
 # (2047/2048)^n < 0.5
 # n = (2047/2048)log 0.5
+# alogb = c ->(2047/2048)log 0.5 = n
+# a^c = b ->(2047/2048)^n= = 0.5
 
 from math import log, floor, ceil
 base = 2047/2048
