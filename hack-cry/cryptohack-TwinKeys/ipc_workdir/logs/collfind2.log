@@ -1,0 +1,267 @@
+MD5 differential path toolbox
+Copyright (C) 2009 Marc Stevens
+http://homepages.cwi.nl/~stevens/
+
+delta_m[2] = [!8!]
+Q-3:	|+0010010 10101110 10111111 00010110|
+Q-2:	|+0010001 10100000 11001100 01000100|
+Q-1:	|+11011-+ +1001110 10011100 00001111|
+Q0:	|+10001-+ +0110101 00101111 01001001| ok p=0.977539
+Q1:	|+......1 -....... .......0 ....1..-| ok p=0.988281
+Q2:	|+.....10 -0...... .......0 ...^-..-| ok p=1
+Q3:	|+1!....+ +0.1...! ^......+ ...-+..-| ok p=1
+Q4:	|+0.....- 0+.0.... -.1....+ ...0-..-| ok p=1
+Q5:	|11.....0 --.0.1.. 0.1..... ...1-..-| ok p=1
+Q6:	|10.....0 --.+.1.. -.-.!..1 ...1+..-| ok p=1
+Q7:	|.1.....+ +-.-.-.! +.-....1 ...1+..-| ok p=1
+Q8:	|!+....1- 1-!+.-.. 1.0....1 ...--..-| ok p=1
+Q9:	|!0....1- 1.00.-.. 0.1.1..- ..!+-..-| ok p=1
+Q10:	|!-..1.-- 0010^-01 -1-00..- 1.00-..-| ok p=1
+Q11:	|!+..00-- 1.-1-001 00-11..- 0^1--.1.| ok p=1
+Q12:	|01^^-110 +^-01+++ +1---... +++1+^10| ok p=1
+Q13:	|1+-+0+-- -----0++ ----0..1 011+1--.| ok p=1
+Q14:	|+1001100 11.0011. 01..1... 0111000.| ok p=1
+Q15:	|+1-1.11- 10010.10 1101.... ...0-1-.| ok p=0.958008
+Q16:	|-.+....- ......-. ........ ......0.| ok p=0.738281
+Q17:	|-.1....1 ......1. ...0.... ....^.+.| ok p=0.999023
+Q18:	|+.0....0 ......1. ...1.... .0......| ok p=0.765625
+Q19:	|+....... ......-. ...+.... .1....^.| ok p=0.889648
+Q20:	|+....... ........ ........ .-......| ok p=1
+Q21:	|+....0.. ......^. ...^.... ........| ok p=1
+Q22:	|+....1.. ........ ........ .^......| ok p=0.512695
+Q23:	|1....+.. ........ ........ ........| ok p=1
+Q24:	|0....... ........ .......0 ........| ok p=1
+Q25:	|.....^.. ........ .......1 ........| ok p=0.499023
+Q26:	|........ ........ .......- ........| ok p=0.987305
+Q27:	|........ ........ ........ ........| ok p=1
+Q28:	|........ ........ .......^ ........| ok p=1
+Q29:	|........ ........ ........ ........| ok p=1
+Q30:	|........ ........ ........ ........| ok p=1
+Q31:	|........ ........ ........ ........| ok p=1
+Q32:	|........ ........ ........ ........| ok p=1
+Q33:	|........ ........ ........ ........| ok p=1
+Q34:	|........ ........ ........ ........| ok p=1
+Q35:	|........ ........ ........ ........| ok p=1
+Q36:	|........ ........ ........ ........| ok p=1
+Q37:	|........ ........ ........ ........| ok p=1
+Q38:	|........ ........ ........ ........| ok p=1
+Q39:	|........ ........ ........ ........| ok p=1
+Q40:	|........ ........ ........ ........| ok p=1
+Q41:	|........ ........ ........ ........| ok p=1
+Q42:	|........ ........ ........ ........| ok p=1
+Q43:	|........ ........ ........ ........| ok p=1
+Q44:	|........ ........ ........ ........| ok p=1
+Q45:	|........ ........ ........ ........| ok p=1
+Q46:	|0....... ........ ........ ........| ok p=1
+Q47:	|1....... ........ ........ ........| ok p=0.501953
+Q48:	|+....... ........ ........ ........| ok p=1
+Q49:	|-....... ........ ........ ........| ok p=1
+Q50:	|-....... ........ ........ ........| ok p=1
+Q51:	|-....... ........ ........ ........| ok p=1
+Q52:	|-....... ........ ........ ........| ok p=1
+Q53:	|-....... ........ ........ ........| ok p=1
+Q54:	|-....... ........ ........ ........| ok p=1
+Q55:	|-....... ........ ........ ........| ok p=1
+Q56:	|-....... ........ ........ ........| ok p=1
+Q57:	|-....... ........ ........ ........| ok p=1
+Q58:	|-....... ........ ........ ........| ok p=1
+Q59:	|-....... ........ ........ ........| ok p=1
+Q60:	|-....... ........ ........ ........| ok p=1
+Q61:	|-....... 0....... ........ ........| ok p=1
+Q62:	|-....... ........ ........ ........| ok p=0.996094
+Q63:	|-....... +....... ........ ........| ok p=1
+Q64:	|+....... +....... ........ ........|
+Starting...
+20: Q5m5tunnel      = 0
+20: Q4m5tunnel      = 1
+20: Q14m6Q3m5tunnel = 2
+21: Q10m10tunnel    = 1
+21: Q9m10tunnel     = 2
+22: Q8Q12m15tunnel  = 0
+23: Q4m4tunnel      = 16
+24: Q9m9tunnel      = 8
+25: Q14Q3m14tunnel  = 3
+20: Q5m5tunnel      = 0
+20: Q4m5tunnel      = 1
+20: Q14m6Q3m5tunnel = 2
+21: Q10m10tunnel    = 1
+21: Q9m10tunnel     = 2
+22: Q8Q12m15tunnel  = 0
+23: Q4m4tunnel      = 16
+24: Q9m9tunnel      = 8
+25: Q14Q3m14tunnel  = 3
+20: Q5m5tunnel      = 0
+20: Q4m5tunnel      = 1
+20: Q14m6Q3m5tunnel = 2
+21: Q10m10tunnel    = 1
+21: Q9m10tunnel     = 2
+22: Q8Q12m15tunnel  = 0
+23: Q4m4tunnel      = 16
+24: Q9m9tunnel      = 8
+25: Q14Q3m14tunnel  = 3
+20: Q5m5tunnel      = 0
+20: Q4m5tunnel      = 1
+20: Q14m6Q3m5tunnel = 2
+21: Q10m10tunnel    = 1
+21: Q9m10tunnel     = 2
+22: Q8Q12m15tunnel  = 0
+23: Q4m4tunnel      = 16
+24: Q9m9tunnel      = 8
+25: Q14Q3m14tunnel  = 3
+20: Q5m5tunnel      = 0
+20: Q4m5tunnel      = 1
+20: Q14m6Q3m5tunnel = 2
+21: Q10m10tunnel    = 1
+21: Q9m10tunnel     = 2
+22: Q8Q12m15tunnel  = 0
+23: Q4m4tunnel      = 16
+24: Q9m9tunnel      = 8
+25: Q14Q3m14tunnel  = 3
+20: Q5m5tunnel      = 0
+20: Q4m5tunnel      = 1
+20: Q14m6Q3m5tunnel = 2
+21: Q10m10tunnel    = 1
+21: Q9m10tunnel     = 2
+22: Q8Q12m15tunnel  = 0
+23: Q4m4tunnel      = 16
+24: Q9m9tunnel      = 8
+25: Q14Q3m14tunnel  = 3
+20: Q5m5tunnel      = 0
+20: Q4m5tunnel      = 1
+20: Q14m6Q3m5tunnel = 2
+21: Q10m10tunnel    = 1
+21: Q9m10tunnel     = 2
+22: Q8Q12m15tunnel  = 0
+23: Q4m4tunnel      = 16
+24: Q9m9tunnel      = 8
+25: Q14Q3m14tunnel  = 3
+20: Q5m5tunnel      = 0
+20: Q4m5tunnel      = 1
+20: Q14m6Q3m5tunnel = 2
+21: Q10m10tunnel    = 1
+21: Q9m10tunnel     = 2
+22: Q8Q12m15tunnel  = 0
+23: Q4m4tunnel      = 16
+24: Q9m9tunnel      = 8
+25: Q14Q3m14tunnel  = 3
+20: Q5m5tunnel      = 0
+20: Q4m5tunnel      = 1
+20: Q14m6Q3m5tunnel = 2
+21: Q10m10tunnel    = 1
+21: Q9m10tunnel     = 2
+22: Q8Q12m15tunnel  = 0
+23: Q4m4tunnel      = 16
+24: Q9m9tunnel      = 8
+25: Q14Q3m14tunnel  = 3
+20: Q5m5tunnel      = 0
+20: Q4m5tunnel      = 1
+20: Q14m6Q3m5tunnel = 2
+21: Q10m10tunnel    = 1
+21: Q9m10tunnel     = 2
+22: Q8Q12m15tunnel  = 0
+23: Q4m4tunnel      = 16
+24: Q9m9tunnel      = 8
+25: Q14Q3m14tunnel  = 3
+20: Q5m5tunnel      = 0
+20: Q4m5tunnel      = 1
+20: Q14m6Q3m5tunnel = 2
+21: Q10m10tunnel    = 1
+21: Q9m10tunnel     = 2
+22: Q8Q12m15tunnel  = 0
+23: Q4m4tunnel      = 16
+24: Q9m9tunnel      = 8
+25: Q14Q3m14tunnel  = 3
+20: Q5m5tunnel      = 0
+20: Q4m5tunnel      = 1
+20: Q14m6Q3m5tunnel = 2
+21: Q10m10tunnel    = 1
+21: Q9m10tunnel     = 2
+22: Q8Q12m15tunnel  = 0
+23: Q4m4tunnel      = 16
+24: Q9m9tunnel      = 8
+25: Q14Q3m14tunnel  = 3
+20: Q5m5tunnel      = 0
+20: Q4m5tunnel      = 1
+20: Q14m6Q3m5tunnel = 2
+21: Q10m10tunnel    = 1
+21: Q9m10tunnel     = 2
+22: Q8Q12m15tunnel  = 0
+23: Q4m4tunnel      = 16
+24: Q9m9tunnel      = 8
+25: Q14Q3m14tunnel  = 3
+20: Q5m5tunnel      = 0
+20: Q4m5tunnel      = 1
+20: Q14m6Q3m5tunnel = 2
+21: Q10m10tunnel    = 1
+21: Q9m10tunnel     = 2
+22: Q8Q12m15tunnel  = 0
+23: Q4m4tunnel      = 16
+24: Q9m9tunnel      = 8
+25: Q14Q3m14tunnel  = 3
+20: Q5m5tunnel      = 0
+20: Q4m5tunnel      = 1
+20: Q14m6Q3m5tunnel = 2
+21: Q10m10tunnel    = 1
+21: Q9m10tunnel     = 2
+22: Q8Q12m15tunnel  = 0
+23: Q4m4tunnel      = 16
+24: Q9m9tunnel      = 8
+25: Q14Q3m14tunnel  = 3
+20: Q5m5tunnel      = 0
+20: Q4m5tunnel      = 1
+20: Q14m6Q3m5tunnel = 2
+21: Q10m10tunnel    = 1
+21: Q9m10tunnel     = 2
+22: Q8Q12m15tunnel  = 0
+23: Q4m4tunnel      = 16
+24: Q9m9tunnel      = 8
+25: Q14Q3m14tunnel  = 3
+.1 0
+2 0
+4 0
+8 0
+16 0
+32 0
+62 1
+64 1
+128 1
+256 1
+512 1
+1024 1
+2048 1
+2288 2
+4096 3
+8192 3
+16384. 3
+32768 3
+51448 4
+65536 4
+...131072 4
+262144 5
+....338430 8
+524288 10
+.....745890 16
+..1048576 24
+1294707 32
+Block 1: ./data/coll1_4185674659
+aa d8 90 9e 79 3e 8d 4b 8a b0 9c 6a b3 f2 90 a9 
+ee 27 1f f7 0b 7d 9a ff 0a d2 82 c1 c2 b3 44 24 
+fc 3d 14 30 15 63 ba bd e8 c7 98 19 23 3e a2 70 
+aa d0 c8 7d 74 b9 12 11 f2 1f 14 ab 90 b9 d8 40 
+Block 2: ./data/coll2_4185674659
+aa d8 90 9e 79 3e 8d 4b 8a b1 9c 6a b3 f2 90 a9 
+ee 27 1f f7 0b 7d 9a ff 0a d2 82 c1 c2 b3 44 24 
+fc 3d 14 30 15 63 ba bd e8 c7 98 19 23 3e a2 70 
+aa d0 c8 7d 74 b9 12 11 f2 1f 14 ab 90 b9 d8 40 
+Found collision!
+Worker thread: caught exception:
+boost: mutex lock failed in pthread_mutex_lock: Invalid argument [generic:22]
+Worker thread: caught exception:
+boost: mutex lock failed in pthread_mutex_lock: Invalid argument [generic:22]
+Worker thread: caught exception:Worker thread: caught exception:Worker thread: caught exception:
+boost: mutex lock failed in pthread_mutex_lock: Invalid argument [generic:22]Worker thread: caught exception:
+
+boost: mutex lock failed in pthread_mutex_lock: Invalid argument [generic:22]
+boost: mutex lock failed in pthread_mutex_lock: Invalid argument [generic:22]
+
+boost: mutex lock failed in pthread_mutex_lock: Invalid argument [generic:22]
