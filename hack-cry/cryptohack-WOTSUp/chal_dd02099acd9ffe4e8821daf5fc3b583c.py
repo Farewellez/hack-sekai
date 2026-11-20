@@ -30,6 +30,7 @@ class Winternitz:
         data_hash = self.hash(data)
         data_hash_bytes = bytearray(data_hash)
         sig = []
+        
         for i in range(KEY_LEN):
             sig_item = self.priv_key[i]
             int_val = data_hash_bytes[i]
@@ -40,12 +41,14 @@ class Winternitz:
         return sig
 
     def verify(self, signature, data):
-        data_hash = self.hash(data)
+        data_hash = self.hash(data) # message
         data_hash_bytes = bytearray(data_hash)
+        
         verify = []
         for i in range(KEY_LEN):
             verify_item = signature[i]
             hash_iters = data_hash_bytes[i] + 1
+            
             for _ in range(hash_iters):
                 verify_item = self.hash(verify_item)
             verify.append(verify_item)
